@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Counter from './components/Counter';
+import SearchBar from './components/SearchBar';
+import GenreList from './components/GenreList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <Counter/>
+    <SearchBar/>
+    <GenreList/>
   </React.StrictMode>
 );
 
