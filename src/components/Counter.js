@@ -1,11 +1,11 @@
 import React, { createElement } from 'react';
 
 class Counter extends React.Component {
-    state = {count: 0}
-    increase = () => {
+    state = { count: this.props.count || 0 }
+    increment = () => {
         this.setState(prevState => ({count: prevState.count + 1}))
     }
-    decrease = () => {
+    decrement = () => {
         this.setState(prevState => ({count: prevState.count - 1}))
     }
 
@@ -15,7 +15,7 @@ class Counter extends React.Component {
             { className: 'counter'},
             createElement(
                 'button',
-                { className: 'counter-increase', onClick: this.increase},
+                { className: 'counter-increment', onClick: this.increment},
                 '+'
             ),
             createElement(
@@ -29,7 +29,7 @@ class Counter extends React.Component {
             ),
             createElement(
                 'button',
-                { className: 'counter-decrease', onClick: this.decrease},
+                { className: 'counter-decrement', onClick: this.decrement},
                 '-'
             )
         )
