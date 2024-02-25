@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import '../GenreList.css';
+import '../components-styles/GenreList.scss';
 
 const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
     return (
