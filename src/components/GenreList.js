@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import '../components-styles/GenreList.scss';
+import PropTypes from 'prop-types';
 
 const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
     return (
@@ -10,10 +11,8 @@ const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
     )
 }
 
-const GenreList = () => {
+const GenreList = ({ genresList }) => {
     const [selectedGenre, setSelectedGenre] = useState('');
-
-    const genresList = ["All", "Documentary", "Comedy", "Horror", "Crime"];
 
     function onSelect(genre) {
         setSelectedGenre(genre)
@@ -31,6 +30,14 @@ const GenreList = () => {
 
         </>
     )
+}
+
+GenreList.propTypes = {
+    genresList: PropTypes.arrayOf(PropTypes.string)
+}
+
+GenreList.defaultProps = {
+    genresList: ['All', 'Documentary', 'Comedy', 'Horror', 'Crime']
 }
 
 export default GenreList;

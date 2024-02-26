@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 
-const SearchBar = ({ initialValue = "" }) => {
+const SearchBar = ( {initialValue}) => {
     const [searchTerm, setSearchTerm] = useState(initialValue);
 
     function onSearch(e) {
@@ -20,6 +21,14 @@ const SearchBar = ({ initialValue = "" }) => {
             </form>
         </>
     );
+}
+
+SearchBar.propTypes = {
+    initialValue: PropTypes.string
+}
+
+SearchBar.defaultProps = {
+    initialValue: ''
 }
 
 export default SearchBar;
