@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Counter from './components/Counter';
 import SearchBar from './components/SearchBar';
 import GenreList from './components/GenreList';
+import MoviesList from './components/MoviesList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <Counter/>
     <SearchBar/>
     <GenreList/>
+    <MoviesList/>
   </React.StrictMode>
 );
 

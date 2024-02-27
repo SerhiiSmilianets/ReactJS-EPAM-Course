@@ -14,21 +14,18 @@ const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
 const GenreList = ({ genresList }) => {
     const [selectedGenre, setSelectedGenre] = useState('');
 
-    function onSelect(genre) {
+    const onSelect = (genre) => {
         setSelectedGenre(genre)
     }
 
     return (
-        <>
-            <ul className="genre-list-container">
-                    {
-                        genresList.map((genre, index) => {
-                            return <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={onSelect}/>
-                        })
-                    }
-            </ul>
-
-        </>
+        <ul className="genre-list-container">
+                {
+                    genresList.map((genre, index) => {
+                        return <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={onSelect}/>
+                    })
+                }
+        </ul>
     )
 }
 
