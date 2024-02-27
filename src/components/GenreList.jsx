@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import '../components-styles/GenreList.scss';
 import PropTypes from 'prop-types';
@@ -21,9 +20,9 @@ const GenreList = ({ genresList }) => {
     return (
         <ul className="genre-list-container">
                 {
-                    genresList.map((genre, index) => {
-                        return <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={onSelect}/>
-                    })
+                    genresList.map((genre, index) => (
+                        <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={onSelect}/>
+                    ))
                 }
         </ul>
     )

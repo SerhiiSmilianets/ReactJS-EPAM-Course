@@ -16,20 +16,18 @@ const MoviesList = () => {
     }, [])
 
     return (
-        <>  
-            <div className="movies-list">
-                <h1>{moviesList.length} movies found</h1>
-                <div className="movies-grid">
+        <div className="movies-list">
+            <h1>{moviesList.length} movies found</h1>
+            <div className="movies-grid">
 
-                    {
-                        moviesList.map((movie) => {
-                            return <MovieTile movieData={movie} onClick="" key={movie.id}/>
-                        })
-                    }
+                {
+                    moviesList.map((movie) => (
+                        <MovieTile movieData={movie} onClick="" key={movie.id}/>
+                    ))
+                }
 
-                </div>
             </div>
-        </>
+        </div>
     )
 }
 

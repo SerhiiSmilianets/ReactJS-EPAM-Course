@@ -3,7 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import Counter from "../components/Counter";
 
 describe('Counter', () => {
-  it('renders initial value provided in props', () => {
+  it('should render initial value provided in props', () => {
     render(<Counter count={5} />);
     expect(screen.getByText('5')).toBeInTheDocument();
   });
