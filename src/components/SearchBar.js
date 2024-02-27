@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const SearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+const SearchBar = ({ initialValue = "" }) => {
+    const [searchTerm, setSearchTerm] = useState(initialValue);
 
     function onSearch(e) {
         e.preventDefault()
@@ -12,8 +12,8 @@ const SearchBar = () => {
 
     return (
         <>
-            <form onSubmit={onSearch} id="search-form">
-                <input name="searchQuery"/>
+            <form onSubmit={onSearch} id="search-form" data-testid="search-form">
+                <input name="searchQuery" defaultValue={initialValue}/>
                 <button type="submit">Search</button>
 
                 <h1>{searchTerm}</h1>
