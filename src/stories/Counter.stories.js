@@ -1,7 +1,7 @@
 import  Counter from '../components/Counter';
 
 export default {
-    title: 'Example/Counter',
+    title: 'GlobalMentoringProgram/Counter',
     component: Counter,
     tags: ['autodocs'],
     parameters: {

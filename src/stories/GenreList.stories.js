@@ -1,7 +1,7 @@
 import GenreList from '../components/GenreList';
 
 export default {
-    title: 'Example/GenreList',
+    title: 'GlobalMentoringProgram/GenreList',
     component: GenreList,
     tags: ['autodocs'],
     parameters: {

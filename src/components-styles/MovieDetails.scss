@@ -1,0 +1,56 @@
+@import 'variables';
+
+.movie-details {
+
+    &__container {
+        width: 100%;
+        flex-wrap: nowrap;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: $text-color;
+    }
+
+    &__poster {
+        margin-right: 30px;
+    }
+
+    &__info-header{
+        display: flex;
+        flex-direction: row;
+    }
+    &__title {
+        text-transform: uppercase;
+        font-size: 40px;
+        font-weight: normal;
+        padding: 0;
+        margin: 0 30px 0 0;
+    }
+
+    &__rating {
+        display: flex;
+        border-radius: 50%;
+        border: 1px solid $text-color;
+        font-size: 20px;
+        padding: 12px;
+    }
+
+    &__genres {
+        font-size: 14px;
+    }
+
+    &__info-middle {
+        color: $button-color;
+        font-size: 24px;
+        span {
+            &:first-child {
+                margin-right: 30px;
+            }
+        }
+    }
+
+    &__overview {
+        font-size: 20px;
+    }
+
+}
