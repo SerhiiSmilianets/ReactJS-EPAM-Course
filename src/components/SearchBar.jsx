@@ -5,7 +5,7 @@ const SearchBar = ( {initialValue}) => {
     const [searchTerm, setSearchTerm] = useState(initialValue);
     const ref = useRef();
 
-    function onSearch(e) {
+    const onSearch = (e) => {
         e.preventDefault()
         setSearchTerm(ref.current.value)
     }

@@ -13,7 +13,7 @@ describe('MovieDetails', () => {
     overview: 'Test overview',
   };
 
-  it('renders movie image', () => {
+  it('should render movie image', () => {
     render(<MovieDetails 
       poster_path={movieData.poster_path} 
       title={movieData.title} 
@@ -29,7 +29,7 @@ describe('MovieDetails', () => {
     expect(image).toHaveAttribute('alt', movieData.title);
   });
 
-  it('renders movie title', () => {
+  it('should render movie title', () => {
     render(<MovieDetails 
       poster_path={movieData.poster_path} 
       title={movieData.title} 
@@ -43,7 +43,7 @@ describe('MovieDetails', () => {
     expect(title).toBeInTheDocument();
   });
 
-  it('renders movie rating', () => {
+  it('should render movie rating', () => {
     render(<MovieDetails 
       poster_path={movieData.poster_path} 
       title={movieData.title} 
@@ -57,7 +57,7 @@ describe('MovieDetails', () => {
     expect(rating).toBeInTheDocument();
   });
 
-  it('renders movie genres', () => {
+  it('should render movie genres', () => {
     render(<MovieDetails 
       poster_path={movieData.poster_path} 
       title={movieData.title} 
@@ -71,7 +71,7 @@ describe('MovieDetails', () => {
     expect(genres).toBeInTheDocument();
   });
 
-  it('renders movie release year', () => {
+  it('should render movie release year', () => {
     render(<MovieDetails 
       poster_path={movieData.poster_path} 
       title={movieData.title} 
@@ -85,7 +85,7 @@ describe('MovieDetails', () => {
     expect(releaseYear).toBeInTheDocument();
   });
 
-  it('renders movie runtime', () => {
+  it('should render movie runtime', () => {
     render(<MovieDetails 
       poster_path={movieData.poster_path} 
       title={movieData.title} 
@@ -99,7 +99,7 @@ describe('MovieDetails', () => {
     expect(runtime).toBeInTheDocument();
   });
 
-  it('renders movie overview', () => {
+  it('should render movie overview', () => {
     render(<MovieDetails 
       poster_path={movieData.poster_path} 
       title={movieData.title} 

@@ -11,7 +11,6 @@ const MoviesList = () => {
         const getMovies = async () => {
             const response = await fetch('http://localhost:4000/movies');
             const resData = await response.json();
-            console.log(resData.data)
             setMoviesList(resData.data);
         }
         getMovies()
