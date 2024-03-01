@@ -1,7 +1,19 @@
-
 import '../components-styles/MovieForm.scss';
 
-const MovieForm = ({movieData, onSubmit}) => {
+const MovieForm = ({movieData, onSubmit, isDeleteForm}) => {
+    if (isDeleteForm) {
+        return (
+            <div className='movie-form__container'>
+                <p>Are you sure you want delete this movie?</p>
+                <form action={onSubmit}>
+                    <div className='movie-form__row form-buttons__container'>
+                        <button className='btn submit' type='submit'>Submit</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
     return (
         <div className='movie-form__container'>
             <form action={onSubmit}>
@@ -11,7 +23,7 @@ const MovieForm = ({movieData, onSubmit}) => {
                         <input id="movie_title" name="movie_title" type="text" placeholder="Movie title" defaultValue={movieData && movieData.title ? movieData.title : ""}/>
                     </div>
 
-                    <div className='movie-form__field-column'>
+                    <div className='movie-form__field-column right'>
                         <label htmlFor="movie_release_date">Release Date</label>
                         <input id="movie_release_date" name="movie_release_date" type="text" placeholder="Select date" defaultValue={movieData && movieData.release_date ? movieData.release_date  : ""}/>
                     </div>
@@ -23,7 +35,7 @@ const MovieForm = ({movieData, onSubmit}) => {
                         <input id="movie_poster_url" name="movie_poster_url" type="text" placeholder="https://" defaultValue={movieData && movieData.poster_path ? movieData.poster_path  : ""}/>
                     </div>
 
-                    <div className='movie-form__field-column'>
+                    <div className='movie-form__field-column right'>
                         <label htmlFor="movie_rating">Rating</label>
                         <input id="movie_rating" name="movie_rating" type="number" placeholder="7.8" defaultValue={movieData && movieData.vote_average  ? movieData.vote_average  : ""}/>
                     </div>
@@ -36,7 +48,7 @@ const MovieForm = ({movieData, onSubmit}) => {
                             <option value="">Select Genre</option>
                         </select>
                     </div>
-                    <div className='movie-form__field-column'>
+                    <div className='movie-form__field-column right'>
                         <label htmlFor="movie_runtime">Runtime</label>
                         <input id="movie_runtime" name="movie_runtime" type="number" placeholder="minutes" defaultValue={movieData && movieData.runtime ? movieData.runtime : ""}/>
                     </div>
@@ -51,8 +63,8 @@ const MovieForm = ({movieData, onSubmit}) => {
                 
 
                 <div className='movie-form__row form-buttons__container'>
-                    <button type='reset'>Reset</button>
-                    <button type='submit'>Submit</button>
+                    <button className='btn reset' type='reset'>Reset</button>
+                    <button className='btn submit' type='submit'>Submit</button>
                 </div>
             </form>
         </div>
