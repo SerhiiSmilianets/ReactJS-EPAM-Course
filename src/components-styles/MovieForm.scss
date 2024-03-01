@@ -1,0 +1,77 @@
+@import 'variables';
+
+.movie-form {
+    &__container {
+        width: 900px;
+        height: 900px;
+        color: $button-color;
+        background-color: $content-background;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 80%;
+            width: 80%;
+
+            input {
+                height: 30px;
+                padding: 0;
+                padding-inline: 0;
+                background-color: $footer-background;
+                &::placeholder {
+                    color: darken($text-color, 30%)
+                }
+            }
+
+            textarea {
+                background-color: $footer-background;
+                width: 100%;
+                padding: 0;
+            }
+
+            button {
+                width: 180px;
+                height: 50px;
+            }
+        }
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__field-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        &.left {
+            input {
+                width: 525px;
+            }
+            select {
+                width: 525px;
+                height: 30px;
+                padding: 0;
+                background-color: $footer-background;
+                color: darken($text-color, 30%)
+            }
+        }
+
+        &.right {
+            input {
+                width: 300px;
+            }
+        }
+    }
+}
+
+.text-area__container {
+    width: 100%;
+}

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 
 const SortControl = ({selectedSorting, onChange}) => {
     const handleOnChange = (e) => {
-        console.log(typeof onChange)
         if (typeof onChange === "function") {
             onChange(e.currentTarget.value)
         }
