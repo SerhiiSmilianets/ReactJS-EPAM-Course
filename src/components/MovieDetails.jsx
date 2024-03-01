@@ -1,15 +1,9 @@
 import PropTypes from 'prop-types';
+import { getRuntimeFormatted, getReleaseYear } from '../utils/movieUtils';
 
 import '../components-styles/MovieDetails.scss';
 
 const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview}) => {
-    const getRuntimeFormatted = (runtime) => {
-        const hours = Math.floor(runtime / 60);
-        const minutes = runtime % 60;
-
-        return [hours, 'h',' ', minutes, 'min'].join('')
-    }
-
     return (
         <div className="movie-details__container">
             <div className="movie-details__poster">
@@ -26,7 +20,7 @@ const MovieDetails = ({poster_path, title, vote_average, genres, release_date, r
                 </div>
 
                 <div className="movie-details__info-middle">
-                    <span>{(new Date(release_date).getFullYear())}</span>
+                    <span>{(getReleaseYear(release_date))}</span>
                     <span>{(getRuntimeFormatted(runtime))}</span>
                 </div>
 
