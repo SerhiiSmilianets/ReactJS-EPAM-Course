@@ -21,6 +21,7 @@
                     border-radius: 2px;
                     border: none;
                     height: 80px;
+                    color: $text-color;
                 }
             }
 
@@ -37,6 +38,7 @@
                 border-radius: 2px;
                 border: none;
                 padding: 3px;
+                color: $text-color;
                 &::placeholder {
                     color: darken($text-color, 30%)
                 }
@@ -87,7 +89,6 @@
             width: 60%;
 
             select {
-
                 height: 30px;
                 padding: 3px;
                 background-color: $footer-background;
