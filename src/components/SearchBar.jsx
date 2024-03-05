@@ -1,21 +1,19 @@
-import React, { useState, useRef } from "react";
+import { useRef } from "react";
 import PropTypes from 'prop-types';
 
-const SearchBar = ( {initialValue}) => {
-    const [searchTerm, setSearchTerm] = useState(initialValue);
+const SearchBar = ( {initialValue = "", onSearch}) => {
+
     const ref = useRef();
 
-    const onSearch = (e) => {
+    const handleSearch = (e) => {
         e.preventDefault()
-        setSearchTerm(ref.current.value)
+        onSearch(ref.current.value)
     }
 
     return (
-        <form onSubmit={onSearch} id="search-form" data-testid="search-form">
+        <form onSubmit={handleSearch} id="search-form" data-testid="search-form">
             <input name="searchQuery" defaultValue={initialValue} ref={ref}/>
             <button type="submit">Search</button>
-
-            <h1>{searchTerm}</h1>
         </form>
     );
 }

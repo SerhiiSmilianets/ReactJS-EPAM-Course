@@ -1,5 +1,5 @@
 import React, { ReactNode, MouseEvent } from 'react';
-import '../components-styles/Dialog.scss';
+import '../styles/Dialog.scss';
 
 interface DialogProps {
   title: string;

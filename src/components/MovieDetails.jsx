@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { getRuntimeFormatted, getReleaseYear } from '../utils/movieUtils';
 
-import '../components-styles/MovieDetails.scss';
+import '../styles/MovieDetails.scss';
 
 const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview}) => {
     return (

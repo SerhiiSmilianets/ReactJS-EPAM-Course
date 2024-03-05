@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types';
 import { getReleaseYear } from '../utils/movieUtils';
-import '../components-styles/MovieTile.scss';
+import '../styles/MovieTile.scss';
 
-const MovieTile = ({poster_path, title, genres, release_date, onClick}) => {
-    const handleClickEvent = (e) => {
-        if (typeof onClick === "function") {
-            onClick(e.currentTarget.value)
-        }
-    }
-
+const MovieTile = ({poster_path, title, genres, release_date, movieData, onClick}) => {
     return (
-        <div className="movie-tile" onClick={handleClickEvent}>
+        <div className="movie-tile" onClick={() => onClick(movieData)}>
             <img className="movie-tile__image" src={poster_path} alt={title} />
             <div className="movie-tile__header">
                 <h4 className="movie-tile__title">{title}</h4>

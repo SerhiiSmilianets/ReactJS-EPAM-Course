@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MovieTile from "./MovieTile";
 import MovieDetails from "./MovieDetails";
 import SortControl from "./SortControl";
-import '../components-styles/MoviesList.scss';
+import '../styles/MoviesList.scss';
 
 const MoviesList = () => {
     const [moviesList, setMoviesList] = useState([])

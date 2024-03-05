@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import '../components-styles/GenreList.scss';
+import '../styles/GenreList.scss';
 import PropTypes from 'prop-types';
 
 const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
@@ -10,18 +9,12 @@ const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
     )
 }
 
-const GenreList = ({ genresList }) => {
-    const [selectedGenre, setSelectedGenre] = useState('');
-
-    const onSelect = (genre) => {
-        setSelectedGenre(genre)
-    }
-
+const GenreList = ({ genresList, selectedGenre, onSelectGenre }) => {
     return (
         <ul className="genre-list-container">
                 {
                     genresList.map((genre, index) => (
-                        <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={onSelect}/>
+                        <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={onSelectGenre}/>
                     ))
                 }
         </ul>
