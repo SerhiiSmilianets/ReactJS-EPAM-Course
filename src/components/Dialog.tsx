@@ -3,20 +3,20 @@ import '../components-styles/Dialog.scss';
 
 interface DialogProps {
   title: string;
-  onClose?: () => void;
-  children?: ReactNode;
+  handleClose: () => void;
+  children: ReactNode;
 }
 
-const Dialog: React.FC<DialogProps> = ({title, onClose, children}) => {
+const Dialog: React.FC<DialogProps> = ({title, handleClose, children}) => {
     const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
-        if (typeof onClose === "function") {
-            onClose()
+        if (typeof handleClose === "function") {
+            handleClose()
         }
     }
 
-    const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
-        if (typeof onClose === "function") {
-            onClose()
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        if (typeof handleClose === "function") {
+            handleClose()
         }
     }
 
@@ -29,7 +29,7 @@ const Dialog: React.FC<DialogProps> = ({title, onClose, children}) => {
             <div className="dialog__container">
                 <div className="dialog__header">
                     <h2>{title}</h2>
-                    <button onClick={handleButtonClick}>&times;</button>
+                    <button onClick={handleClick}>&times;</button>
                 </div>
                 <div className="dialog__content">
                     {children}

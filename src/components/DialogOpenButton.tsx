@@ -35,7 +35,7 @@ const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogF
         <>
             <button onClick={handleDialogOpen}>Open Dialog</button>
             {isDialogOpen && createPortal(
-                <Dialog onClose={handleDialogClose} title={dialogTitle}>
+                <Dialog handleClose={handleDialogClose} title={dialogTitle}>
                     <MovieForm movieData={movieData} onSubmit={onDialogFormSubmit} isDeleteForm={isDeleteForm}/>
                 </Dialog>,
                 document.body
