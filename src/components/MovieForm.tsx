@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
-import '../styles/MovieForm.scss';
-import {GenresListArray} from '../constants'
+import '../components-styles/MovieForm.scss';
+import {GENRE_LIST} from '../constants'
 
 interface MovieData {
   title: string;
@@ -64,7 +64,7 @@ const MovieForm: React.FC<MovieFormProps> = ({movieData, onSubmit, isDeleteForm}
                         <label htmlFor="movie_genre">Genre</label>
                         <select name="movie_genre" id="movie_genre" defaultValue={movieData?.genres || ""}>
                             <option value="">Select Genre</option>
-                            {GenresListArray.map((item) =>
+                            {GENRE_LIST.map((item) =>
                                 <option key={item} value={item}>{item}</option>
                             )}
                         </select>

@@ -1,7 +1,7 @@
-const GenresListArray = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
-const SortingRules = ['Release Date', 'Title'];
+const GENRE_LIST = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
+const SORTING_RULES = ['Release Date', 'Title'];
 
 export {
-    GenresListArray,
-    SortingRules
+    GENRE_LIST,
+    SORTING_RULES
 }
