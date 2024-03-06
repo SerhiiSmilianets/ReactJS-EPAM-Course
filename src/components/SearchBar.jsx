@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import '../styles/SearchBar.scss';
 import PropTypes from 'prop-types';
 
 const SearchBar = ( {initialValue = "", onSearch}) => {
@@ -11,10 +12,13 @@ const SearchBar = ( {initialValue = "", onSearch}) => {
     }
 
     return (
-        <form onSubmit={handleSearch} id="search-form" data-testid="search-form">
-            <input name="searchQuery" defaultValue={initialValue} ref={ref}/>
-            <button type="submit">Search</button>
-        </form>
+        <div className="search-form__container">
+            <h2>Find your movie</h2>
+            <form onSubmit={handleSearch} id="search-form" data-testid="search-form">
+                <input name="searchQuery" defaultValue={initialValue} ref={ref} placeholder="What do you want to watch?"/>
+                <button type="submit">Search</button>
+            </form>
+        </div>
     );
 }
 

@@ -1,14 +1,15 @@
 @import 'variables';
 
 .movie-details {
-
     &__container {
-        width: 100%;
+        padding: 30px;
         flex-wrap: nowrap;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         color: $text-color;
+        background-color: $content-background;
+        position: relative;
     }
 
     &__poster {
@@ -54,5 +55,16 @@
     &__overview {
         font-size: 20px;
     }
+}
 
+.reset-header-btn{
+    position:absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    color: $button-color;
+    background-color: transparent;
+    border: 0;
+    font-size: 20px;
+    cursor: pointer;
 }

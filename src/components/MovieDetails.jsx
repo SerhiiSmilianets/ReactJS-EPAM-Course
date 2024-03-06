@@ -3,7 +3,7 @@ import { getRuntimeFormatted, getReleaseYear } from '../utils/movieUtils';
 
 import '../styles/MovieDetails.scss';
 
-const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview}) => {
+const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview, resetHeader}) => {
     return (
         <div className="movie-details__container">
             <div className="movie-details__poster">
@@ -26,6 +26,7 @@ const MovieDetails = ({poster_path, title, vote_average, genres, release_date, r
 
                 <p className='movie-details__overview'>{overview}</p>
             </div>
+            <button className="reset-header-btn" onClick={ ()=> resetHeader("") }> &#x1F50E;&#xFE0E;</button>
         </div>
     )
 }

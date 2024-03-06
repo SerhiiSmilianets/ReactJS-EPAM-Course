@@ -1,3 +1,4 @@
+import '../styles/SortControl.scss';
 import PropTypes from 'prop-types';
 
 const SortControl = ({selectedSorting, onSortChange}) => {

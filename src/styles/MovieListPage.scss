@@ -1,0 +1,47 @@
+@import 'variables';
+
+body{
+    background-color: $outer-background;
+    padding: 20px;
+}
+.default-header__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+
+    .add-movie__container {
+        display: flex;
+        width: 100%;
+        justify-content: end;
+    }
+
+    .searchbar__container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-self: center;
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+}
+
+nav {
+    margin-top: 20px;
+    background-color: $content-background;
+    padding: 10px 30px 0 30px;
+
+    .nav-components__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    hr {
+        margin: 0;
+        padding: 0;
+        border-color: $outer-background;
+        border-width: 2px;
+    }
+}

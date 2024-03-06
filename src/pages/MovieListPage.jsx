@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 //components import
 import SearchBar from '../components/SearchBar';
@@ -9,14 +9,14 @@ import MovieDetails from "../components/MovieDetails";
 import DialogOpenButton from '../components/DialogOpenButton';
 
 //styles import
-
+import '../styles/MovieListPage.scss';
 //helpers import
 import {GenresListArray} from '../constants'
 
 const MovieListPage = () => {
     const [moviesList, setMoviesList] = useState([]);
     const [searchTerm, setSearchTerm] = useState();
-    const [selectedGenre, setSelectedGenre] = useState();
+    const [selectedGenre, setSelectedGenre] = useState('All');
     const [selectedSort, setSelectedSort] = useState('realeaseDate');
     const [selectedMovieData, setSelectedMovieData] = useState();
 
@@ -47,22 +47,26 @@ const MovieListPage = () => {
                         release_date={selectedMovieData.release_date} 
                         runtime={selectedMovieData.runtime} 
                         overview={selectedMovieData.overview}
+                        resetHeader={setSelectedMovieData}
                     /> 
                     :
-                    <>
+                    <div className="default-header__container">
                         <div className="add-movie__container">
                             <DialogOpenButton dialogTitle="Add Movie"/>
                         </div>
                         <div className="searchbar__container">
                             <SearchBar initialValue={searchTerm} onSearch={onSearch}/>
                         </div>
-                    </>
+                    </div>
                 }
             </header>
 
             <nav>
-                <GenreList genresList={GenresListArray} selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre}/>
-                <SortControl selectedSorting={selectedSort} onSortChange={setSelectedSort}/>
+                <div className="nav-components__container">
+                    <GenreList genresList={GenresListArray} selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre}/>
+                    <SortControl selectedSorting={selectedSort} onSortChange={setSelectedSort}/>
+                </div>
+                <hr />
             </nav>
 
             <main>
