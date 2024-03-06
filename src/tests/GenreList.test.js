@@ -15,18 +15,18 @@ describe('GenreList', () => {
   });
 
   it('highlights a selected genre after a click event', () => {
-    render(<GenreList />);
+    const onSelectGenre = jest.fn();
+    render(<GenreList onSelectGenre={onSelectGenre} />);
     const selectedGenre = "Comedy";
     fireEvent.click(screen.getByText(selectedGenre));
-    const selectedButton = screen.getByRole('button', { name: selectedGenre });
-    expect(selectedButton).toHaveClass('selected');
+    expect(onSelectGenre).toHaveBeenCalledWith(selectedGenre);
   });
 
   it('updates the selected genre after a click event on a genre button', () => {
-    render(<GenreList />);
+    const onSelectGenre = jest.fn();
+    render(<GenreList onSelectGenre={onSelectGenre} />);
     const genreToSelect = "Horror";
     fireEvent.click(screen.getByText(genreToSelect));
-    const selectedButton = screen.getByRole('button', { name: genreToSelect });
-    expect(selectedButton).toHaveClass('selected');
+    expect(onSelectGenre).toHaveBeenCalledWith(genreToSelect);
   });
 });

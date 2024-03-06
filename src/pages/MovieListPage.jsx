@@ -11,7 +11,7 @@ import DialogOpenButton from '../components/DialogOpenButton';
 //styles import
 import '../styles/MovieListPage.scss';
 //helpers import
-import {GenresListArray} from '../constants'
+import {GENRE_LIST} from '../constants'
 
 const MovieListPage = () => {
     const [moviesList, setMoviesList] = useState([]);
@@ -52,7 +52,7 @@ const MovieListPage = () => {
                     :
                     <div className="default-header__container">
                         <div className="add-movie__container">
-                            <DialogOpenButton dialogTitle="Add Movie"/>
+                            <DialogOpenButton dialogTitle="Add Movie" buttonText="+ ADD MOVIE"/>
                         </div>
                         <div className="searchbar__container">
                             <SearchBar initialValue={searchTerm} onSearch={onSearch}/>
@@ -63,7 +63,7 @@ const MovieListPage = () => {
 
             <nav>
                 <div className="nav-components__container">
-                    <GenreList genresList={GenresListArray} selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre}/>
+                    <GenreList genresList={GENRE_LIST} selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre}/>
                     <SortControl selectedSorting={selectedSort} onSortChange={setSelectedSort}/>
                 </div>
                 <hr />

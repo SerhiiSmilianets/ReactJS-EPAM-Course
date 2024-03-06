@@ -18,9 +18,10 @@ export interface DialogOpenButtonProps {
   onDialogFormSubmit: () => void;
   isDeleteForm: boolean;
   dialogTitle: string;
+  buttonText: string;
 }
 
-const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogFormSubmit, isDeleteForm, dialogTitle}) => {
+const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogFormSubmit, isDeleteForm, dialogTitle, buttonText = "Open Dialog"}) => {
     const [isDialogOpen, setDialogOpen] = useState(false)
 
     const handleDialogOpen = (event: MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +34,7 @@ const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogF
 
     return (
         <>
-            <button onClick={handleDialogOpen}>Open Dialog</button>
+            <button className="dialog-open-btn" onClick={handleDialogOpen}>{buttonText}</button>
             {isDialogOpen && createPortal(
                 <Dialog handleClose={handleDialogClose} title={dialogTitle}>
                     <MovieForm movieData={movieData} onSubmit={onDialogFormSubmit} isDeleteForm={isDeleteForm}/>

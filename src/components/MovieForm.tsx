@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import '../components-styles/MovieForm.scss';
+import '../styles/MovieForm.scss';
 import {GENRE_LIST} from '../constants'
 
 interface MovieData {

@@ -11,18 +11,20 @@ describe('SearchBar', () => {
   });
 
   it('updates the displayed value after typing to the input and a "click" event on the Submit button', async () => {
-    render(<SearchBar initialValue="test" />);
+    const onSearch = jest.fn();
+    render(<SearchBar initialValue="test" onSearch={onSearch} />);
     const input = screen.getByRole('textbox');
     await userEvent.type(input, 'new value');
     fireEvent.click(screen.getByRole('button', { name: /search/i }));
-    expect(screen.getByRole('heading')).toHaveTextContent('new value');
+    expect(onSearch).toHaveBeenCalledWith('testnew value');
   });
 
   it('updates the displayed value after typing to the input and pressing Enter key', async () => {
-    render(<SearchBar initialValue="test" />);
+    const onSearch = jest.fn();
+    render(<SearchBar initialValue="test" onSearch={onSearch} />);
     const input = screen.getByRole('textbox');
     await userEvent.type(input, 'new value');
     fireEvent.submit(screen.getByTestId('search-form'));
-    expect(screen.getByRole('heading')).toHaveTextContent('new value');
+    expect(onSearch).toHaveBeenCalledWith('testnew value');
   });
 });
