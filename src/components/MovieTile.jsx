@@ -8,7 +8,7 @@ const MovieTile = ({poster_path, title, genres, release_date, onClick}) => {
             onClick(e.currentTarget.value)
         }
     }
-    
+
     return (
         <div className="movie-tile" onClick={handleClickEvent}>
             <img className="movie-tile__image" src={poster_path} alt={title} />

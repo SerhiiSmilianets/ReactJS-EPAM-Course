@@ -4,6 +4,7 @@ import Counter from './components/Counter';
 import SearchBar from './components/SearchBar';
 import GenreList from './components/GenreList';
 import MoviesList from './components/MoviesList';
+import DialogOpenButton from './components/DialogOpenButton';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <SearchBar/>
       <GenreList/>
       <MoviesList/>
+      <DialogOpenButton/>
     </>
   );
 }
