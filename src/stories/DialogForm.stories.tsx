@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import DialogOpenButton, { DialogOpenButtonProps } from '../components/DialogOpenButton';
+import DialogOpenButton from '../components/DialogOpenButton';
+import {DialogOpenButtonProps} from '../types'
 
 export default {
   title: 'GlobalMentoringProgram/DialogOpenButton',
@@ -24,7 +25,7 @@ EditMovie.args = {
     release_date: '2022-01-01',
     poster_path: 'https://example.com/poster.jpg',
     vote_average: 7.8,
-    genres: ['Crime'],
+    genres: 'Crime',
     runtime: 120,
     overview: 'This is an example movie.',
   },
@@ -40,7 +41,7 @@ DeleteMovie.args = {
     release_date: '2022-01-01',
     poster_path: 'https://example.com/poster.jpg',
     vote_average: 7.8,
-    genres: ['Crime'],
+    genres: 'Crime',
     runtime: 120,
     overview: 'This is an example movie.',
   },

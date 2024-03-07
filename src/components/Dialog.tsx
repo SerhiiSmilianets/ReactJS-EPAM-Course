@@ -1,11 +1,6 @@
-import React, { ReactNode, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import '../styles/Dialog.scss';
-
-interface DialogProps {
-  title: string;
-  handleClose: () => void;
-  children: ReactNode;
-}
+import {DialogProps} from '../types'
 
 const Dialog: React.FC<DialogProps> = ({title, handleClose, children}) => {
     const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {

@@ -1,22 +1,7 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import '../styles/MovieForm.scss';
 import {GENRE_LIST} from '../constants'
-
-interface MovieData {
-  title: string;
-  release_date: string;
-  poster_path: string;
-  vote_average: number;
-  genres: string[];
-  runtime: number;
-  overview: string;
-}
-
-interface MovieFormProps {
-  movieData?: MovieData;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  isDeleteForm: boolean;
-}
+import {MovieFormProps} from '../types'
 
 const MovieForm: React.FC<MovieFormProps> = ({movieData, onSubmit, isDeleteForm}) => {
     if (isDeleteForm) {

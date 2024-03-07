@@ -9,6 +9,11 @@
     color: $text-color;
     cursor: pointer;
 
+    &__container {
+        position: relative;
+        z-index: 1;
+    }
+
     &__header {
         display: flex;
         justify-content: space-between;
@@ -24,5 +29,70 @@
         border-radius: 10px;
         border: 1px solid $text-color;
         padding: 5px 10px;
+    }
+
+    &__control-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        border: 1px solid $text-color;
+        border-radius: 50%;
+        color: $text-color;
+        padding: 4px 9px 2px 9px;
+        cursor: pointer;
+        display: none;
+        z-index: 800;
+    }
+
+    &:hover {
+        .movie-tile__control-btn {
+            display: block;
+        }
+    }
+
+    &__context-container {
+        position: absolute;
+        z-index: 900;
+        top: 10px;
+        right: 10px;
+        color: $text-color;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        background-color: $content-background;
+        cursor: auto;
+        &.hidden{
+            display: none;
+        }
+
+        .close-context-btn {
+            color: $text-color;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    }
+
+    &__context-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100px;
+        .dialog-open-btn{
+            color: $text-color;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            align-items: flex-start;
+            text-align: left;
+            padding: 5px 10px;
+            
+            &:hover {
+                background-color: $button-color;
+            }
+        }
     }
 }
