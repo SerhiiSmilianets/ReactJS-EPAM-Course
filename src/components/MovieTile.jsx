@@ -6,7 +6,6 @@ import DialogOpenButton from '../components/DialogOpenButton';
 
 const useOutsideClick = (menuRef, setMenuTileContextOpen) => {
     useEffect(() => {
-        console.log("test")
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 setMenuTileContextOpen(false)
@@ -21,13 +20,11 @@ const useOutsideClick = (menuRef, setMenuTileContextOpen) => {
     }, [menuRef, setMenuTileContextOpen]);
 }
 
-
-const MovieTile = ({poster_path, title, genres, release_date, movieData, onClick}) => {
+const MovieTile = ({movieData, onClick}) => {
     const [isMenuTileContextOpen, setMenuTileContextOpen] = useState(false);// need to hide/show menu
     const [isMenuTileContextRendered, setMenuTileContextRendered] = useState(false)// need for menu render
-    
+
     const menuRef = useRef(null);
-    const tileRef = useRef(null)
 
     const handleTileMenuOpen = () => {
         setMenuTileContextRendered(true)
@@ -36,8 +33,7 @@ const MovieTile = ({poster_path, title, genres, release_date, movieData, onClick
 
     const handleTileClick = (e) => {
         e.stopPropagation()
-        // if (e.target?.classList.contains("movie-tile__control-btn")) return
-        if(tileRef.current && tileRef.current.contains(e.target)) return
+        if (e.target?.classList.contains("movie-tile__control-btn")) return
         onClick(movieData)
     }
 
@@ -45,14 +41,14 @@ const MovieTile = ({poster_path, title, genres, release_date, movieData, onClick
 
     return (
         <div className="movie-tile__container">
-            <div className="movie-tile" id={movieData.id} onClick={handleTileClick} ref={tileRef}>
-                <img className="movie-tile__image" src={poster_path} alt={title} />
+            <div className="movie-tile" id={movieData.id} onClick={handleTileClick}>
+                <img className="movie-tile__image" src={movieData.poster_path} alt={movieData.title} />
                 <div className="movie-tile__header">
-                    <h4 className="movie-tile__title">{title}</h4>
-                    <span className="movie-tile__release">{(getReleaseYear(release_date))}</span>
+                    <h4 className="movie-tile__title">{movieData.title}</h4>
+                    <span className="movie-tile__release">{(getReleaseYear(movieData.release_date))}</span>
                 </div>
                 <div className="movie-tile__footer">
-                    <p className="movie-tile__genres">{(genres || []).join(', ')}</p>
+                    <p className="movie-tile__genres">{(movieData.genres || []).join(', ')}</p>
                 </div>
 
                 <button onClick={handleTileMenuOpen} className='movie-tile__control-btn'>&#8942;</button>
@@ -67,7 +63,6 @@ const MovieTile = ({poster_path, title, genres, release_date, movieData, onClick
                 </div>
             }
         </div>
-        
     )
 }
 

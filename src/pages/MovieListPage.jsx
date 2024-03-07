@@ -76,10 +76,6 @@ const MovieListPage = () => {
                         moviesList && moviesList.map((movie) => (
                                 <MovieTile 
                                     key={movie.id}
-                                    poster_path={movie.poster_path} 
-                                    title={movie.title} 
-                                    genres={movie.genres} 
-                                    release_date={movie.release_date} 
                                     movieData={movie}
                                     onClick={setSelectedMovieData}
                                 />
