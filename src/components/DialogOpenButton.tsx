@@ -4,7 +4,7 @@ import Dialog from './Dialog';
 import MovieForm from './MovieForm';
 import {DialogOpenButtonProps} from '../types'
 
-const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogFormSubmit, isDeleteForm, dialogTitle, buttonText = "Open Dialog"}) => {
+const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogFormSubmit, isDeleteForm = false, dialogTitle, buttonText = "Open Dialog"}) => {
     const [isDialogOpen, setDialogOpen] = useState(false)
 
     const handleDialogOpen = (event: MouseEvent<HTMLButtonElement>) => {

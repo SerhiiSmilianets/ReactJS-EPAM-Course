@@ -12,13 +12,15 @@ import DialogOpenButton from '../components/DialogOpenButton';
 import '../styles/MovieListPage.scss';
 //helpers import
 import {GENRE_LIST} from '../constants'
+//types import 
+import {MovieData} from '../types'
 
 const MovieListPage = () => {
-    const [moviesList, setMoviesList] = useState([]);
-    const [searchTerm, setSearchTerm] = useState();
-    const [selectedGenre, setSelectedGenre] = useState('All');
-    const [selectedSort, setSelectedSort] = useState('realeaseDate');
-    const [selectedMovieData, setSelectedMovieData] = useState();
+    const [moviesList, setMoviesList] = useState<MovieData[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string | undefined>();
+    const [selectedGenre, setSelectedGenre] = useState<string>('All');
+    const [selectedSort, setSelectedSort] = useState<string>('realeaseDate');
+    const [selectedMovieData, setSelectedMovieData] = useState<MovieData | undefined>();
 
     useEffect(() => {
         const getMovies = async () => {
@@ -29,7 +31,7 @@ const MovieListPage = () => {
         getMovies()
     }, [])
 
-    const onSearch = (value) => {
+    const onSearch = (value: string) => {
         setSearchTerm(value)
     }
 
@@ -51,7 +53,7 @@ const MovieListPage = () => {
                     :
                     <div className="default-header__container">
                         <div className="add-movie__container">
-                            <DialogOpenButton dialogTitle="Add Movie" buttonText="+ ADD MOVIE"/>
+                            <DialogOpenButton dialogTitle={"Add Movie"} buttonText={"+ ADD MOVIE"}  onDialogFormSubmit={() => {}}/>
                         </div>
                         <div className="searchbar__container">
                             <SearchBar initialValue={searchTerm} onSearch={onSearch}/>

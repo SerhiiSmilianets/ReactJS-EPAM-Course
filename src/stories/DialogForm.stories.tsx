@@ -21,11 +21,12 @@ AddMovie.args = {
 export const EditMovie = Template.bind({});
 EditMovie.args = {
   movieData: {
+    id: '1',
     title: 'Example Movie',
     release_date: '2022-01-01',
     poster_path: 'https://example.com/poster.jpg',
     vote_average: 7.8,
-    genres: 'Crime',
+    genres: ['Crime'],
     runtime: 120,
     overview: 'This is an example movie.',
   },
@@ -37,11 +38,12 @@ EditMovie.args = {
 export const DeleteMovie = Template.bind({});
 DeleteMovie.args = {
   movieData: {
+    id: '1',
     title: 'Example Movie',
     release_date: '2022-01-01',
     poster_path: 'https://example.com/poster.jpg',
     vote_average: 7.8,
-    genres: 'Crime',
+    genres: ['Crime'],
     runtime: 120,
     overview: 'This is an example movie.',
   },
