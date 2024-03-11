@@ -1,10 +1,18 @@
 import '../styles/GenreList.scss';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
     return (
         <li>
-            <button className={"genre-item " + (isSelected ? "selected" : "")} onClick={() => onGenreSelection(genre)} >{genre} {isSelected}</button>
+            <NavLink to={`/genre/${genre}`} 
+                className={({ isActive }) =>
+                isActive ? "genre-item selected" : "genre-item"
+            }
+            >
+                {genre}
+            </NavLink>
+            {/* <button className={"genre-item " + (isSelected ? "selected" : "")} onClick={() => onGenreSelection(genre)} >{genre}</button> */}
         </li>
     )
 }

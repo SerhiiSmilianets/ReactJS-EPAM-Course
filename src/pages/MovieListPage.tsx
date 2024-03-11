@@ -24,7 +24,7 @@ const MovieListPage = () => {
 
     useEffect(() => {
         const getMovies = async () => {
-            const response = await fetch('http://localhost:4000/movies');
+            const response = await fetch('http://localhost:4000/movies?limit=15');
             const resData = await response.json();
             setMoviesList(resData.data);
         }

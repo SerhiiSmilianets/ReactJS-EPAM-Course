@@ -16,6 +16,7 @@
     text-transform: uppercase;
     margin-right: 10px;
     cursor: pointer;
+    text-decoration: none;
     &.selected {
         border-bottom: 2px solid $button-color;
     }
