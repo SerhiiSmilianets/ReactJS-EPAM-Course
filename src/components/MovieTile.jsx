@@ -21,14 +21,14 @@ const useOutsideClick = (menuRef, setMenuTileContextOpen) => {
 }
 
 const MovieTile = ({movieData, onClick}) => {
-    const [isMenuTileContextOpen, setMenuTileContextOpen] = useState(false);// need to hide/show menu
+    const [isMenuOpen, setIsMenuOpen] = useState(false);// need to hide/show menu
     const [isMenuTileContextRendered, setMenuTileContextRendered] = useState(false)// need for menu render
 
     const menuRef = useRef(null);
 
     const handleTileMenuOpen = () => {
         setMenuTileContextRendered(true)
-        setMenuTileContextOpen(true)
+        setIsMenuOpen(true)
     }
 
     const handleTileClick = (e) => {
@@ -37,7 +37,7 @@ const MovieTile = ({movieData, onClick}) => {
         onClick(movieData)
     }
 
-    useOutsideClick(menuRef, setMenuTileContextOpen);
+    useOutsideClick(menuRef, setIsMenuOpen);
 
     return (
         <div className="movie-tile__container">
@@ -54,8 +54,8 @@ const MovieTile = ({movieData, onClick}) => {
                 <button onClick={handleTileMenuOpen} className='movie-tile__control-btn'>&#8942;</button>
             </div>
             {isMenuTileContextRendered &&
-                <div className={'movie-tile__context-container ' + (isMenuTileContextOpen ? '' : 'hidden')} ref={menuRef}>
-                    <button className="close-context-btn" onClick={() => setMenuTileContextOpen(false)}>&times;</button>
+                <div className={'movie-tile__context-container ' + (isMenuOpen ? '' : 'hidden')} ref={menuRef}>
+                    <button className="close-context-btn" onClick={() => setIsMenuOpen(false)}>&times;</button>
                     <ul className='movie-tile__context-menu'>
                         <li><DialogOpenButton movieData={movieData} dialogTitle={'Edit Movie'} buttonText={'Edit'}/></li>
                         <li><DialogOpenButton isDeleteForm={true} dialogTitle={'Delete Movie'} buttonText={'Delete'}/></li>

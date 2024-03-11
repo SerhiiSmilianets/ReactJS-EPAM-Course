@@ -31,7 +31,7 @@ const MovieListPage = () => {
         getMovies()
     }, [])
 
-    const onSearch = (value: string) => {
+    const handleSearch = (value: string) => {
         setSearchTerm(value)
     }
 
@@ -56,7 +56,7 @@ const MovieListPage = () => {
                             <DialogOpenButton dialogTitle={"Add Movie"} buttonText={"+ ADD MOVIE"}  onDialogFormSubmit={() => {}}/>
                         </div>
                         <div className="searchbar__container">
-                            <SearchBar initialValue={searchTerm} onSearch={onSearch}/>
+                            <SearchBar initialValue={searchTerm} onSearch={handleSearch }/>
                         </div>
                     </div>
                 }
@@ -64,8 +64,8 @@ const MovieListPage = () => {
 
             <nav>
                 <div className="nav-components__container">
-                    <GenreList genresList={GENRE_LIST} selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre}/>
-                    <SortControl selectedSorting={selectedSort} onSortChange={setSelectedSort}/>
+                    <GenreList genresList={GENRE_LIST} selectedGenre={selectedGenre} handleSelectGenre={setSelectedGenre}/>
+                    <SortControl selectedSorting={selectedSort} handleSortChange={setSelectedSort}/>
                 </div>
                 <hr />
             </nav>

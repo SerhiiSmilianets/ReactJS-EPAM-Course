@@ -24,9 +24,3 @@ export interface MovieFormProps {
     onSubmit: (event: FormEvent<HTMLFormElement>) => void;
     isDeleteForm: boolean;
 }
-
-export interface DialogProps {
-    title: string;
-    handleClose: () => void;
-    children: ReactNode;
-}
