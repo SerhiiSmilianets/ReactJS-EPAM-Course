@@ -10,17 +10,3 @@ export interface MovieData {
     runtime: number;
     overview: string;
 }
-
-export interface DialogOpenButtonProps {
-    movieData?: MovieData;
-    onDialogFormSubmit: () => void;
-    isDeleteForm?: boolean;
-    dialogTitle: string;
-    buttonText: string;
-}
-
-export interface MovieFormProps {
-    movieData?: MovieData;
-    onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-    isDeleteForm: boolean;
-}
