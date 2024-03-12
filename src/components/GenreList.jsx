@@ -17,12 +17,12 @@ const GenreBtn = ({genre, isSelected, onGenreSelection}) => {
     )
 }
 
-const GenreList = ({ genresList, selectedGenre, onSelectGenre }) => {
+const GenreList = ({ genresList, selectedGenre, handleSelectGenre }) => {
     return (
         <ul className="genre-list-container">
                 {
                     genresList.map((genre, index) => (
-                        <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={onSelectGenre}/>
+                        <GenreBtn key={genre + index} genre={genre} isSelected={genre === selectedGenre} onGenreSelection={handleSelectGenre}/>
                     ))
                 }
         </ul>

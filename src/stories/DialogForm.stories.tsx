@@ -1,7 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import DialogOpenButton from '../components/DialogOpenButton';
-import {DialogOpenButtonProps} from '../types'
+import DialogOpenButton, {DialogOpenButtonProps} from '../components/DialogOpenButton';
 
 export default {
   title: 'GlobalMentoringProgram/DialogOpenButton',

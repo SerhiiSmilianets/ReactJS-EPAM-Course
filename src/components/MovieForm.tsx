@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import '../styles/MovieForm.scss';
 import {GENRE_LIST} from '../constants'
-import {MovieFormProps} from '../types'
+import {MovieData} from '../types'
 
-const MovieForm: React.FC<MovieFormProps> = ({movieData, onSubmit, isDeleteForm}) => {
+export interface MovieFormProps {
+    movieData?: MovieData;
+    handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
+    isDeleteForm: boolean;
+}
+
+const MovieForm: React.FC<MovieFormProps> = ({movieData, handleSubmit, isDeleteForm}) => {
     if (isDeleteForm) {
         return (
             <div className='movie-form__container'>
                 <p>Are you sure you want delete this movie?</p>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div className='movie-form__row form-buttons__container'>
                         <button className='btn submit' type='submit'>Submit</button>
                     </div>
@@ -19,7 +25,7 @@ const MovieForm: React.FC<MovieFormProps> = ({movieData, onSubmit, isDeleteForm}
 
     return (
         <div className='movie-form__container'>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className='movie-form__row'>
                     <div className='movie-form__field-column left'>
                         <label htmlFor="movie_title">Title</label>

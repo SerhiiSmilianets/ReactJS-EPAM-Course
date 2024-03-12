@@ -2,7 +2,15 @@ import React, { useState, MouseEvent } from "react";
 import { createPortal } from 'react-dom';
 import Dialog from './Dialog';
 import MovieForm from './MovieForm';
-import {DialogOpenButtonProps} from '../types'
+import {MovieData} from '../types'
+
+export interface DialogOpenButtonProps {
+    movieData?: MovieData;
+    onDialogFormSubmit: () => void;
+    isDeleteForm?: boolean;
+    dialogTitle: string;
+    buttonText: string;
+}
 
 const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogFormSubmit, isDeleteForm = false, dialogTitle, buttonText = "Open Dialog"}) => {
     const [isDialogOpen, setDialogOpen] = useState(false)
@@ -20,7 +28,7 @@ const DialogOpenButton: React.FC<DialogOpenButtonProps> = ({movieData, onDialogF
             <button className="dialog-open-btn" onClick={handleDialogOpen}>{buttonText}</button>
             {isDialogOpen && createPortal(
                 <Dialog handleClose={handleDialogClose} title={dialogTitle}>
-                    <MovieForm movieData={movieData} onSubmit={onDialogFormSubmit} isDeleteForm={isDeleteForm}/>
+                    <MovieForm movieData={movieData} handleSubmit={onDialogFormSubmit} isDeleteForm={isDeleteForm}/>
                 </Dialog>,
                 document.body
             )}
