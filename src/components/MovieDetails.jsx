@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
-import { getRuntimeFormatted, getReleaseYear } from '../utils/movieUtils';
+import { useLoaderData, useParams } from "react-router-dom";
+import { getRuntimeFormatted, getReleaseYear, fetchMovies } from '../utils/movieUtils';
+import {MOVIE_API_URL} from '../constants'
 
 import '../styles/MovieDetails.scss';
 
-const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview, resetHeader}) => {
+// const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview, resetHeader}) => {
+const MovieDetails = ({resetHeader}) => {
+    const {poster_path, title, vote_average, genres, release_date, runtime, overview} = useLoaderData();
     return (
         <div className="movie-details__container">
             <div className="movie-details__poster">
@@ -16,7 +20,7 @@ const MovieDetails = ({poster_path, title, vote_average, genres, release_date, r
                 </div>
 
                 <div className="movie-details__genres-container">
-                    <p className="movie-details__genres">{(genres.length === 2 ? genres.join(' & ') : genres.join(', '))}</p>
+                    <p className="movie-details__genres">{(genres ? genres.length === 2 ? genres.join(' & ') : genres.join(', ') : "")}</p>
                 </div>
 
                 <div className="movie-details__info-middle">
@@ -42,3 +46,7 @@ MovieDetails.propTypes = {
 }
 
 export default MovieDetails;
+
+export async function loader({ params }) {
+    return await fetchMovies([MOVIE_API_URL, params.movieId].join('/'))
+  }

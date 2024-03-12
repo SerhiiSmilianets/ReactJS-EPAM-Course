@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 //components import
 import SearchBar from '../components/SearchBar';
@@ -38,7 +39,7 @@ const MovieListPage = () => {
     return (
         <>
             <header className="header__container">
-                {selectedMovieData 
+                {/* {selectedMovieData 
                     ?
                     <MovieDetails 
                         poster_path={selectedMovieData.poster_path} 
@@ -59,7 +60,9 @@ const MovieListPage = () => {
                             <SearchBar initialValue={searchTerm} onSearch={onSearch}/>
                         </div>
                     </div>
-                }
+                } */}
+
+                <Outlet/>
             </header>
 
             <nav>
@@ -76,11 +79,11 @@ const MovieListPage = () => {
                     <div className="movies-grid">
                         {
                         moviesList && moviesList.map((movie) => (
-                                <MovieTile 
-                                    key={movie.id}
-                                    movieData={movie}
-                                    onClick={setSelectedMovieData}
-                                />
+                            <MovieTile
+                                key={movie.id}
+                                movieData={movie}
+                                onClick={setSelectedMovieData}
+                            />
                         ))
                         }
                     </div>

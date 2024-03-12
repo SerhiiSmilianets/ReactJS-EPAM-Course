@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { getReleaseYear } from '../utils/movieUtils';
 import '../styles/MovieTile.scss';
@@ -40,7 +41,7 @@ const MovieTile = ({movieData, onClick}) => {
     useOutsideClick(menuRef, setMenuTileContextOpen);
 
     return (
-        <div className="movie-tile__container">
+        <Link to={`/${movieData.id}`} className="movie-tile__container"> 
             <div className="movie-tile" id={movieData.id} onClick={handleTileClick}>
                 <img className="movie-tile__image" src={movieData.poster_path} alt={movieData.title} />
                 <div className="movie-tile__header">
@@ -62,7 +63,7 @@ const MovieTile = ({movieData, onClick}) => {
                     </ul>
                 </div>
             }
-        </div>
+        </Link>
     )
 }
 

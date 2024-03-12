@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MovieListPage from './pages/MovieListPage'
-import MovieDetails from "./components/MovieDetails";
+import MovieDetails, {loader as movieDetailLoader} from "./components/MovieDetails";
+import SearchBar from './components/SearchBar';
+import { getMovieById } from './utils/movieUtils'
 
 const router = createBrowserRouter([
   {
@@ -8,8 +10,13 @@ const router = createBrowserRouter([
     element: <MovieListPage/>,
     children: [
       {
+        path: '/',
+        element: <SearchBar/>
+      },
+      {
         path: '/:movieId',
-        element: <MovieDetails/>
+        element: <MovieDetails/>,
+        loader: movieDetailLoader
       }
     ]
   },
