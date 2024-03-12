@@ -1,0 +1,22 @@
+@import 'variables';
+
+.genre-list-container{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    color: $text-color;
+}
+
+.genre-item {
+    background-color: transparent;
+    border: 0;
+    padding-bottom: 10px;
+    color: $text-color;
+    text-transform: uppercase;
+    margin-right: 10px;
+    cursor: pointer;
+    &.selected {
+        border-bottom: 2px solid $button-color;
+    }
+}

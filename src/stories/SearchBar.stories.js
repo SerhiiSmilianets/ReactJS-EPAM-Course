@@ -1,22 +1,13 @@
+import React from 'react';
+import { action } from '@storybook/addon-actions';
 import SearchBar from '../components/SearchBar';
 
 export default {
-    title: 'GlobalMentoringProgram/SearchBar',
-    component: SearchBar,
-    tags: ['autodocs'],
-    parameters: {
-        backgrounds: {
-        default: 'dark',
-        },
-    },
+  title: 'GlobalMentoringProgram/SearchBar',
+  component: SearchBar,
+  tags: ['autodocs']
 };
 
-export const Default = {}
+export const Default = () => <SearchBar onSearch={action('onSearch')} />;
 
-export const WithInitialValue = {
-    args: {
-        initialValue: "test search"
-    }
-};
-
-
+export const WithInitialValue = () => <SearchBar initialValue="test search" onSearch={action('onSearch')} />;

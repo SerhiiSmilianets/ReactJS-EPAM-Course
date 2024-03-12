@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import DialogOpenButton, { DialogOpenButtonProps } from '../components/DialogOpenButton';
+import DialogOpenButton, {DialogOpenButtonProps} from '../components/DialogOpenButton';
 
 export default {
   title: 'GlobalMentoringProgram/DialogOpenButton',
@@ -20,6 +20,7 @@ AddMovie.args = {
 export const EditMovie = Template.bind({});
 EditMovie.args = {
   movieData: {
+    id: '1',
     title: 'Example Movie',
     release_date: '2022-01-01',
     poster_path: 'https://example.com/poster.jpg',
@@ -36,6 +37,7 @@ EditMovie.args = {
 export const DeleteMovie = Template.bind({});
 DeleteMovie.args = {
   movieData: {
+    id: '1',
     title: 'Example Movie',
     release_date: '2022-01-01',
     poster_path: 'https://example.com/poster.jpg',

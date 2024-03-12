@@ -1,10 +1,10 @@
-import React, { ReactNode, MouseEvent } from 'react';
-import '../components-styles/Dialog.scss';
+import React, { MouseEvent, ReactNode } from 'react';
+import '../styles/Dialog.scss';
 
-interface DialogProps {
-  title: string;
-  handleClose: () => void;
-  children: ReactNode;
+export interface DialogProps {
+    title: string;
+    handleClose: () => void;
+    children: ReactNode;
 }
 
 const Dialog: React.FC<DialogProps> = ({title, handleClose, children}) => {
