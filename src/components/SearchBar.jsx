@@ -1,33 +1,36 @@
 import { useRef } from "react";
+import { useSearchParams, Form } from 'react-router-dom';
 import '../styles/SearchBar.scss';
-import PropTypes from 'prop-types';
 
-const SearchBar = ( {initialValue = "", onSearch}) => {
-
+const SearchBar = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const ref = useRef();
 
     const handleSearch = (e) => {
         e.preventDefault()
-        onSearch(ref.current.value)
+        const queryObj = {};
+
+        for (const key of searchParams.keys()) {
+            if (key !== "search") {
+                queryObj[key] = searchParams.get(key);
+            }
+        }
+        if (!ref.current.value) {
+            setSearchParams({...queryObj})
+        } else {
+            setSearchParams({...queryObj, search: ref.current.value})
+        }
     }
 
     return (
         <div className="search-form__container">
             <h2>Find your movie</h2>
-            <form onSubmit={handleSearch} id="search-form" data-testid="search-form">
-                <input name="searchQuery" defaultValue={initialValue} ref={ref} placeholder="What do you want to watch?"/>
+            <Form onSubmit={handleSearch} id="search-form" data-testid="search-form">
+                <input name="search" defaultValue={searchParams.get('search')} ref={ref} placeholder="What do you want to watch?"/>
                 <button type="submit">Search</button>
-            </form>
+            </Form>
         </div>
     );
-}
-
-SearchBar.propTypes = {
-    initialValue: PropTypes.string
-}
-
-SearchBar.defaultProps = {
-    initialValue: ''
 }
 
 export default SearchBar;

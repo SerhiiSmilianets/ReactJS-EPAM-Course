@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, Link, useLocation } from "react-router-dom";
 import { getRuntimeFormatted, getReleaseYear, fetchMovies } from '../utils/movieUtils';
 import {MOVIE_API_URL} from '../constants'
 
 import '../styles/MovieDetails.scss';
 
-// const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview, resetHeader}) => {
-const MovieDetails = ({resetHeader}) => {
+const MovieDetails = () => {
     const {poster_path, title, vote_average, genres, release_date, runtime, overview} = useLoaderData();
+    const location = useLocation();
+
     return (
         <div className="movie-details__container">
             <div className="movie-details__poster">
@@ -30,23 +30,13 @@ const MovieDetails = ({resetHeader}) => {
 
                 <p className='movie-details__overview'>{overview}</p>
             </div>
-            <button className="reset-header-btn" onClick={ ()=> resetHeader("") }> &#x1F50E;&#xFE0E;</button>
+            <Link to={`/${location.search}`} className="reset-header-btn"> &#x1F50E;&#xFE0E;</Link>
         </div>
     )
 }
 
-MovieDetails.propTypes = {
-    poster_path: PropTypes.string,
-    title: PropTypes.string,
-    vote_average: PropTypes.number,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    release_date: PropTypes.string,
-    runtime: PropTypes.number,
-    overview: PropTypes.string,
-}
-
 export default MovieDetails;
 
-export async function loader({ params }) {
+export async function loader({ params}) {
     return await fetchMovies([MOVIE_API_URL, params.movieId].join('/'))
-  }
+}

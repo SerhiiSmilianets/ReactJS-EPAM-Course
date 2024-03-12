@@ -16,10 +16,6 @@ const fetchMovies = async (url) => {
     return resData
 }
 
-// const getMovieById = (movieId) => {
-//     return fetchMovies([MOVIE_API_URL, movieId].join('/'))
-// }
-
 export {
     getRuntimeFormatted,
     getReleaseYear,

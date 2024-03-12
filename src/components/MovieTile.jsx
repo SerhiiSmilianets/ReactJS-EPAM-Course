@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { getReleaseYear } from '../utils/movieUtils';
 import '../styles/MovieTile.scss';
@@ -21,9 +21,10 @@ const useOutsideClick = (menuRef, setMenuTileContextOpen) => {
     }, [menuRef, setMenuTileContextOpen]);
 }
 
-const MovieTile = ({movieData, onClick}) => {
+const MovieTile = ({movieData}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);// need to hide/show menu
     const [isMenuTileContextRendered, setMenuTileContextRendered] = useState(false)// need for menu render
+    const location = useLocation();
 
     const menuRef = useRef(null);
 
@@ -32,17 +33,11 @@ const MovieTile = ({movieData, onClick}) => {
         setIsMenuOpen(true)
     }
 
-    const handleTileClick = (e) => {
-        e.stopPropagation()
-        if (e.target?.classList.contains("movie-tile__control-btn")) return
-        onClick(movieData)
-    }
-
     useOutsideClick(menuRef, setIsMenuOpen);
 
     return (
-        <Link to={`/${movieData.id}`} className="movie-tile__container"> 
-            <div className="movie-tile" id={movieData.id} onClick={handleTileClick}>
+        <div className="movie-tile__container"> 
+            <Link to={`/${movieData.id + location.search}`} className="movie-tile" id={movieData.id}>
                 <img className="movie-tile__image" src={movieData.poster_path} alt={movieData.title} />
                 <div className="movie-tile__header">
                     <h4 className="movie-tile__title">{movieData.title}</h4>
@@ -51,9 +46,10 @@ const MovieTile = ({movieData, onClick}) => {
                 <div className="movie-tile__footer">
                     <p className="movie-tile__genres">{(movieData.genres || []).join(', ')}</p>
                 </div>
+            </Link>
 
-                <button onClick={handleTileMenuOpen} className='movie-tile__control-btn'>&#8942;</button>
-            </div>
+            <button onClick={handleTileMenuOpen} className='movie-tile__control-btn'>&#8942;</button>
+            
             {isMenuTileContextRendered &&
                 <div className={'movie-tile__context-container ' + (isMenuOpen ? '' : 'hidden')} ref={menuRef}>
                     <button className="close-context-btn" onClick={() => setIsMenuOpen(false)}>&times;</button>
@@ -63,7 +59,7 @@ const MovieTile = ({movieData, onClick}) => {
                     </ul>
                 </div>
             }
-        </Link>
+        </div>
     )
 }
 

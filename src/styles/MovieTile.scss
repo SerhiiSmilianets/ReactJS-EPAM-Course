@@ -6,14 +6,21 @@
     height: 100%;
     color: $text-color;
     cursor: pointer;
+    text-decoration: none;
 
     &__container {
+        position: relative;
+        z-index: 0;
         display: flex;
         flex-direction: column;
         flex-basis: 30%;
-        position: relative;
-        z-index: 1;
         margin-bottom: 30px;
+
+        &:hover {
+            .movie-tile__control-btn {
+                display: block;
+            }
+        }
     }
 
     &__header {
@@ -39,6 +46,7 @@
 
     &__control-btn {
         position: absolute;
+        z-index: 800;
         top: 10px;
         right: 10px;
         background-color: transparent;
@@ -48,7 +56,12 @@
         padding: 4px 9px 2px 9px;
         cursor: pointer;
         display: none;
-        z-index: 800;
+
+        &:hover {
+            .movie-tile__container {
+                pointer-events: none;
+            }
+        }
     }
 
     &:hover {
