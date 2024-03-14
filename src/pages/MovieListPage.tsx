@@ -10,7 +10,7 @@ import '../styles/MovieListPage.scss';
 
 //helpers import
 import {GENRE_LIST, MOVIE_API_URL} from '../constants'
-import { fetchMovies } from '../utils/movieUtils';
+import { getMoviesList } from '../utils/movieUtils';
 
 //types import
 import {MovieData} from '../types'
@@ -20,8 +20,7 @@ interface LoaderData {
 }
 
 const MovieListPage = () => {
-    const loadedData = useLoaderData() as LoaderData;
-    const moviesList : MovieData[] = loadedData.data;
+    const moviesList = useLoaderData() as MovieData[];
 
     return (
         <>
@@ -70,5 +69,5 @@ export async function loader({request}: LoaderProps): Promise<LoaderData> {
     if (!sortBy) {
         additionalQueryParameters = [additionalQueryParameters, "sortBy=release_date"].join('&')
     }
-    return await fetchMovies([MOVIE_API_URL, url.search, additionalQueryParameters].join(''));
+    return await getMoviesList([MOVIE_API_URL, url.search, additionalQueryParameters].join(''));
 }
