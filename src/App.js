@@ -1,7 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MovieListPage, {loader as movieListLoader} from './pages/MovieListPage'
 import MovieDetails, {loader as movieDetailLoader} from "./components/MovieDetails";
-import DefaultHeader from './components/DefaultHeader'
+import SearchBar from './components/SearchBar'
+import AddNewMovie from './components/AddNewMovie';
+import EditMovie from './components/EditMovie';
+import DeleteMovie from './components/DeleteMovie';
 
 function App() {
   const router = createBrowserRouter([
@@ -12,18 +15,29 @@ function App() {
       children: [
         {
           path: '/',
-          element: <DefaultHeader/>
+          element: <SearchBar/>,
+          children: [
+            {
+              path: '/new',
+              element: <AddNewMovie/>
+            },
+            {
+              path: '/:movieId/edit',
+              element: <EditMovie/>,
+              loader: movieDetailLoader
+            },
+            {
+              path: '/:movieId/delete',
+              element: <DeleteMovie/>
+            }
+          ]
         },
         {
           path: '/:movieId',
           element: <MovieDetails/>,
-          loader: movieDetailLoader
+          loader: movieDetailLoader,
         }
       ]
-    },
-    {
-      path:'/?genre/:genreId',
-      element: <MovieListPage/>
     }
   ]);
 

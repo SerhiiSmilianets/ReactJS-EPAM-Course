@@ -1,23 +1,17 @@
 import React, { MouseEvent, ReactNode } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/Dialog.scss';
 
 export interface DialogProps {
     title: string;
-    handleClose: () => void;
     children: ReactNode;
 }
 
-const Dialog: React.FC<DialogProps> = ({title, handleClose, children}) => {
+const Dialog: React.FC<DialogProps> = ({title, children}) => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
-        if (typeof handleClose === "function") {
-            handleClose()
-        }
-    }
-
-    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-        if (typeof handleClose === "function") {
-            handleClose()
-        }
+        navigate(`/${location.search}`);
     }
 
     if (!children) {
@@ -29,7 +23,7 @@ const Dialog: React.FC<DialogProps> = ({title, handleClose, children}) => {
             <div className="dialog__container">
                 <div className="dialog__header">
                     <h2>{title}</h2>
-                    <button onClick={handleClick}>&times;</button>
+                    <Link to={`/${location.search}`} >&times;</Link>
                 </div>
                 <div className="dialog__content">
                     {children}
