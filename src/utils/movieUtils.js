@@ -9,7 +9,7 @@ const getReleaseYear = (release_date) => {
     return (new Date(release_date).getFullYear())
 }
 
-const fetchMovies = async (url) => {
+const getMovieItem = async (url) => {
     const response = await fetch(url);
     const resData = await response.json();
 
@@ -17,13 +17,14 @@ const fetchMovies = async (url) => {
 }
 
 const getMoviesList = async (url) => {
-    const resData = await fetchMovies(url);
+    const response = await fetch(url);
+    const resData = await response.json();
     return resData.data;
 }
 
 export {
     getRuntimeFormatted,
     getReleaseYear,
-    fetchMovies,
+    getMovieItem,
     getMoviesList
 }

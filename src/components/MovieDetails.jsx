@@ -1,5 +1,5 @@
 import { useLoaderData, Link, useLocation } from "react-router-dom";
-import { getRuntimeFormatted, getReleaseYear, fetchMovies } from '../utils/movieUtils';
+import { getRuntimeFormatted, getReleaseYear, getMovieItem } from '../utils/movieUtils';
 import {MOVIE_API_URL} from '../constants'
 
 import '../styles/MovieDetails.scss';
@@ -38,5 +38,5 @@ const MovieDetails = () => {
 export default MovieDetails;
 
 export async function loader({ params}) {
-    return await fetchMovies([MOVIE_API_URL, params.movieId].join('/'))
+    return await getMovieItem([MOVIE_API_URL, params.movieId].join('/'))
 }
