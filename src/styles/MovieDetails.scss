@@ -6,7 +6,6 @@
         flex-wrap: nowrap;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         color: $text-color;
         background-color: $content-background;
         position: relative;
@@ -29,7 +28,8 @@
     }
 
     &__rating {
-        display: flex;
+        display: block;
+        text-align: center;
         border-radius: 50%;
         border: 1px solid $text-color;
         font-size: 20px;
@@ -67,4 +67,5 @@
     border: 0;
     font-size: 20px;
     cursor: pointer;
+    text-decoration: none;
 }

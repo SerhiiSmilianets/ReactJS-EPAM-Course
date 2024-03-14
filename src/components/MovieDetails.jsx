@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
-import { getRuntimeFormatted, getReleaseYear } from '../utils/movieUtils';
+import { useLoaderData, Link, useLocation } from "react-router-dom";
+import { getRuntimeFormatted, getReleaseYear, getMovieItem } from '../utils/movieUtils';
+import {MOVIE_API_URL} from '../constants'
 
 import '../styles/MovieDetails.scss';
 
-const MovieDetails = ({poster_path, title, vote_average, genres, release_date, runtime, overview, resetHeader}) => {
+const MovieDetails = () => {
+    const {poster_path, title, vote_average, genres, release_date, runtime, overview} = useLoaderData();
+    const location = useLocation();
+
     return (
         <div className="movie-details__container">
             <div className="movie-details__poster">
@@ -16,7 +20,7 @@ const MovieDetails = ({poster_path, title, vote_average, genres, release_date, r
                 </div>
 
                 <div className="movie-details__genres-container">
-                    <p className="movie-details__genres">{(genres.length === 2 ? genres.join(' & ') : genres.join(', '))}</p>
+                    <p className="movie-details__genres">{(genres ? genres.length === 2 ? genres.join(' & ') : genres.join(', ') : "")}</p>
                 </div>
 
                 <div className="movie-details__info-middle">
@@ -26,19 +30,13 @@ const MovieDetails = ({poster_path, title, vote_average, genres, release_date, r
 
                 <p className='movie-details__overview'>{overview}</p>
             </div>
-            <button className="reset-header-btn" onClick={ ()=> resetHeader("") }> &#x1F50E;&#xFE0E;</button>
+            <Link to={`/${location.search}`} className="reset-header-btn"> &#x1F50E;&#xFE0E;</Link>
         </div>
     )
 }
 
-MovieDetails.propTypes = {
-    poster_path: PropTypes.string,
-    title: PropTypes.string,
-    vote_average: PropTypes.number,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    release_date: PropTypes.string,
-    runtime: PropTypes.number,
-    overview: PropTypes.string,
-}
-
 export default MovieDetails;
+
+export async function loader({ params}) {
+    return await getMovieItem([MOVIE_API_URL, params.movieId].join('/'))
+}

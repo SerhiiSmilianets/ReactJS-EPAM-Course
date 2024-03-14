@@ -1,71 +1,37 @@
-import { useState, useEffect } from "react";
+import {Outlet, useLoaderData } from "react-router-dom";
 
 //components import
-import SearchBar from '../components/SearchBar';
 import GenreList from '../components/GenreList';
 import SortControl from "../components/SortControl";
 import MovieTile from "../components/MovieTile";
-import MovieDetails from "../components/MovieDetails";
-import DialogOpenButton from '../components/DialogOpenButton';
 
 //styles import
 import '../styles/MovieListPage.scss';
+
 //helpers import
-import {GENRE_LIST} from '../constants'
-//types import 
+import {GENRE_LIST, MOVIE_API_URL} from '../constants'
+import { getMoviesList } from '../utils/movieUtils';
+
+//types import
 import {MovieData} from '../types'
 
+interface LoaderData {
+    data: MovieData[]
+}
+
 const MovieListPage = () => {
-    const [moviesList, setMoviesList] = useState<MovieData[]>([]);
-    const [searchTerm, setSearchTerm] = useState<string | undefined>();
-    const [selectedGenre, setSelectedGenre] = useState<string>('All');
-    const [selectedSort, setSelectedSort] = useState<string>('realeaseDate');
-    const [selectedMovieData, setSelectedMovieData] = useState<MovieData | undefined>();
-
-    useEffect(() => {
-        const getMovies = async () => {
-            const response = await fetch('http://localhost:4000/movies');
-            const resData = await response.json();
-            setMoviesList(resData.data);
-        }
-        getMovies()
-    }, [])
-
-    const handleSearch = (value: string) => {
-        setSearchTerm(value)
-    }
+    const moviesList = useLoaderData() as MovieData[];
 
     return (
         <>
             <header className="header__container">
-                {selectedMovieData 
-                    ?
-                    <MovieDetails 
-                        poster_path={selectedMovieData.poster_path} 
-                        title={selectedMovieData.title} 
-                        vote_average={selectedMovieData.vote_average} 
-                        genres={selectedMovieData.genres} 
-                        release_date={selectedMovieData.release_date} 
-                        runtime={selectedMovieData.runtime} 
-                        overview={selectedMovieData.overview}
-                        resetHeader={setSelectedMovieData}
-                    /> 
-                    :
-                    <div className="default-header__container">
-                        <div className="add-movie__container">
-                            <DialogOpenButton dialogTitle={"Add Movie"} buttonText={"+ ADD MOVIE"}  onDialogFormSubmit={() => {}}/>
-                        </div>
-                        <div className="searchbar__container">
-                            <SearchBar initialValue={searchTerm} onSearch={handleSearch }/>
-                        </div>
-                    </div>
-                }
+                <Outlet/>
             </header>
 
             <nav>
                 <div className="nav-components__container">
-                    <GenreList genresList={GENRE_LIST} selectedGenre={selectedGenre} handleSelectGenre={setSelectedGenre}/>
-                    <SortControl selectedSorting={selectedSort} handleSortChange={setSelectedSort}/>
+                    <GenreList genresList={GENRE_LIST} />
+                    <SortControl />
                 </div>
                 <hr />
             </nav>
@@ -76,19 +42,32 @@ const MovieListPage = () => {
                     <div className="movies-grid">
                         {
                         moviesList && moviesList.map((movie) => (
-                                <MovieTile 
-                                    key={movie.id}
-                                    movieData={movie}
-                                    onClick={setSelectedMovieData}
-                                />
+                            <MovieTile
+                                key={movie.id}
+                                movieData={movie}
+                            />
                         ))
                         }
                     </div>
                 </div>
             </main>
         </>
-
     )
 }
 
 export default MovieListPage;
+
+interface LoaderProps {
+    request: Request;
+}
+
+export async function loader({request}: LoaderProps): Promise<LoaderData> {
+    const url = new URL(request.url)
+    const params = new URLSearchParams(url.search);
+    const sortBy = params.get("sortBy");
+    let additionalQueryParameters = url.search ? '&searchBy=title&limit=100&sortOrder=asc' : '?searchBy=title&limit=100&sortOrder=asc';
+    if (!sortBy) {
+        additionalQueryParameters = [additionalQueryParameters, "sortBy=release_date"].join('&')
+    }
+    return await getMoviesList([MOVIE_API_URL, url.search, additionalQueryParameters].join(''));
+}
