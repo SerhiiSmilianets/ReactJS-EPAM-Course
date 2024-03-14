@@ -16,8 +16,14 @@ const fetchMovies = async (url) => {
     return resData
 }
 
+const getMoviesList = async (url) => {
+    const resData = await fetchMovies(url);
+    return resData.data;
+}
+
 export {
     getRuntimeFormatted,
     getReleaseYear,
     fetchMovies,
+    getMoviesList
 }
