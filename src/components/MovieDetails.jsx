@@ -1,5 +1,5 @@
-import { useLoaderData, Link, useLocation } from "react-router-dom";
-import { getRuntimeFormatted, getReleaseYear, getMovieItem } from '../utils/movieUtils';
+import { useLoaderData, Link, useLocation, Outlet } from "react-router-dom";
+import { getRuntimeFormatted, getReleaseYear, getMovieItem, addImageFallback } from '../utils/movieUtils';
 import {MOVIE_API_URL} from '../constants'
 
 import '../styles/MovieDetails.scss';
@@ -11,7 +11,7 @@ const MovieDetails = () => {
     return (
         <div className="movie-details__container">
             <div className="movie-details__poster">
-                <img className="movie-details__image" src={poster_path} alt={title} />
+                <img className="movie-details__image" src={poster_path} alt={title} onError={addImageFallback}/>
             </div>
             <div className="movie-details__info">
                 <div className="movie-details__info-header">
@@ -31,6 +31,7 @@ const MovieDetails = () => {
                 <p className='movie-details__overview'>{overview}</p>
             </div>
             <Link to={`/${location.search}`} className="reset-header-btn"> &#x1F50E;&#xFE0E;</Link>
+            <Outlet/>
         </div>
     )
 }

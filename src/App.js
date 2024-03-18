@@ -2,9 +2,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MovieListPage, {loader as movieListLoader} from './pages/MovieListPage'
 import MovieDetails, {loader as movieDetailLoader} from "./components/MovieDetails";
 import SearchBar from './components/SearchBar'
-import AddNewMovie from './components/AddNewMovie';
-import EditMovie from './components/EditMovie';
-import DeleteMovie from './components/DeleteMovie';
+import AddNewMovie from './components/movieDialogs/AddMovieDialog';
+import EditMovie from './components/movieDialogs/EditMovieDialog';
+import DeleteMovie from './components/movieDialogs/DeleteMovieDialog';
 
 function App() {
   const router = createBrowserRouter([
@@ -20,7 +20,14 @@ function App() {
             {
               path: '/new',
               element: <AddNewMovie/>
-            },
+            }
+          ]
+        },
+        {
+          path: '/:movieId',
+          element: <MovieDetails/>,
+          loader: movieDetailLoader,
+          children: [
             {
               path: '/:movieId/edit',
               element: <EditMovie/>,
@@ -32,11 +39,15 @@ function App() {
             }
           ]
         },
-        {
-          path: '/:movieId',
-          element: <MovieDetails/>,
-          loader: movieDetailLoader,
-        }
+        // {
+        //   path: '/:movieId/edit',
+        //   element: <EditMovie/>,
+        //   loader: movieDetailLoader
+        // },
+        // {
+        //   path: '/:movieId/delete',
+        //   element: <DeleteMovie/>
+        // }
       ]
     }
   ]);

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
-import { Link, useLocation, Outlet } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
-import { getReleaseYear } from '../utils/movieUtils';
+import { getReleaseYear, addImageFallback } from '../utils/movieUtils';
 import '../styles/MovieTile.scss';
 
 const useOutsideClick = (menuRef, setMenuTileContextOpen) => {
@@ -37,7 +37,7 @@ const MovieTile = ({movieData}) => {
     return (
         <div className="movie-tile__container">
             <Link to={`/${movieData.id + location.search}`} className="movie-tile" id={movieData.id}>
-                <img className="movie-tile__image" src={movieData.poster_path} alt={movieData.title} />
+                <img className="movie-tile__image"  src={movieData.poster_path} alt={movieData.title} onError={addImageFallback}/>
                 <div className="movie-tile__header">
                     <h4 className="movie-tile__title">{movieData.title}</h4>
                     <span className="movie-tile__release">{(getReleaseYear(movieData.release_date))}</span>
