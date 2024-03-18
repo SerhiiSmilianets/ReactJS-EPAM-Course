@@ -1,14 +1,25 @@
+import { FC } from 'react';
 import { useForm } from "react-hook-form"
 import { useNavigate, useLocation, Form } from 'react-router-dom';
 
 import {GENRE_LIST} from '../../constants'
 import '../../styles/MovieForm.scss';
 
-const AddMovieForm = () => {
+interface FormData {
+    title: string;
+    release_date: string;
+    poster_path: string;
+    vote_average: number;
+    genres: string[];
+    runtime: number;
+    overview: string;
+}
+
+const AddMovieForm: FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { register, handleSubmit, reset, formState: {errors} } = useForm();
-    const onSubmit = async(data) => {
+    const { register, handleSubmit, reset, formState: {errors} } = useForm<FormData>();
+    const onSubmit = async(data: FormData) => {
         try {
             const response = await fetch("http://localhost:4000/movies", {
                 method: "POST",

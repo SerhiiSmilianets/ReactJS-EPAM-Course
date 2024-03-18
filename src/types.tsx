@@ -1,5 +1,3 @@
-import { FormEvent, ReactNode } from 'react';
-
 export interface MovieData {
     id: string;
     title: string;

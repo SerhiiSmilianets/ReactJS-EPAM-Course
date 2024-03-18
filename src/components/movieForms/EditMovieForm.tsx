@@ -1,11 +1,17 @@
+import { FC } from 'react';
 import { useForm } from "react-hook-form"
 import { useNavigate, useLocation, Form } from 'react-router-dom';
 
 import {GENRE_LIST} from '../../constants'
 import {getFirstSelectedGenre} from '../../utils/movieUtils'
 import '../../styles/MovieForm.scss';
+import { MovieData } from '../../types';
 
-const EditMovieForm = ({movieData}) => {
+interface MovieDataProps {
+    movieData: MovieData;
+}
+
+const EditMovieForm: FC<MovieDataProps> = ({movieData}) => {
     const defaultValues = {
         title: movieData.title,
         release_date: movieData.release_date,
@@ -17,11 +23,11 @@ const EditMovieForm = ({movieData}) => {
     }
     const navigate = useNavigate();
     const location = useLocation();
-    const { register, handleSubmit, reset, formState: {errors} } = useForm({
+    const { register, handleSubmit, reset, formState: {errors} } = useForm<MovieData>({
         defaultValues: defaultValues
     });
 
-    const onSubmit = async(data) => {
+    const onSubmit = async(data: MovieData) => {
         try {
             const response = await fetch("http://localhost:4000/movies", {
                 method: "PUT",
@@ -150,4 +156,3 @@ const EditMovieForm = ({movieData}) => {
 }
 
 export default EditMovieForm;
-

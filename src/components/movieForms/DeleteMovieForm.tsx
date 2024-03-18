@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import '../../styles/MovieForm.scss';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Form } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 
 const DeleteMovieForm: FC = () => {
@@ -29,11 +29,11 @@ const DeleteMovieForm: FC = () => {
     return (
         <div className='movie-form__container'>
             <p>Are you sure you want delete this movie?</p>
-            <form onSubmit={handleSubmit(handleSubmitForm)}>
+            <Form onSubmit={handleSubmit(handleSubmitForm)}>
                 <div className='movie-form__row form-buttons__container'>
                     <button className='btn submit' type='submit'>Submit</button>
                 </div>
-            </form>
+            </Form>
         </div>
     )
 }
