@@ -1,8 +1,14 @@
+import { FC } from 'react';
 import '../styles/GenreList.scss';
-import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 
-const GenreBtn = ({genre, selectedGenre, onGenreSelection}) => {
+interface GenreBtnProps {
+  genre: string;
+  selectedGenre: string;
+  onGenreSelection: (genre: string) => void;
+}
+
+const GenreBtn: FC<GenreBtnProps> = ({genre, selectedGenre, onGenreSelection}) => {
     return (
         <li>
             <button className={"genre-item " + (selectedGenre === genre ? "selected" : "")} onClick={() => onGenreSelection(genre)} >{genre}</button>
@@ -10,11 +16,15 @@ const GenreBtn = ({genre, selectedGenre, onGenreSelection}) => {
     )
 }
 
-const GenreList = ({ genresList }) => {
+interface GenreListProps {
+  genresList: string[];
+}
+
+const GenreList: FC<GenreListProps> = ({ genresList = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'] }) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const handleSelectGenre = (genre) => {
-        const queryObj = {};
+    const handleSelectGenre = (genre: string) => {
+        const queryObj: any = {};
         for (const key of searchParams.keys()) {
             if  (key !== "filter") {
                 queryObj[key] = searchParams.get(key);
@@ -32,19 +42,11 @@ const GenreList = ({ genresList }) => {
         <ul className="genre-list-container">
                 {
                     genresList.map((genre, index) => (
-                        <GenreBtn key={genre + index} genre={genre} selectedGenre={searchParams.get('filter') ?  searchParams.get('filter') : "All"} onGenreSelection={handleSelectGenre}/>
+                        <GenreBtn key={genre + index} genre={genre} selectedGenre={searchParams.get('filter') || "All"}  onGenreSelection={handleSelectGenre}/>
                     ))
                 }
         </ul>
     )
-}
-
-GenreList.propTypes = {
-    genresList: PropTypes.arrayOf(PropTypes.string)
-}
-
-GenreList.defaultProps = {
-    genresList: ['All', 'Documentary', 'Comedy', 'Horror', 'Crime']
 }
 
 export default GenreList;

@@ -1,11 +1,14 @@
+import { FC } from 'react';
 import { useLoaderData, Link, useLocation, Outlet } from "react-router-dom";
 import { getRuntimeFormatted, getReleaseYear, getMovieItem, addImageFallback } from '../utils/movieUtils';
 import {MOVIE_API_URL} from '../constants'
+import { MovieData } from '../types';
 
 import '../styles/MovieDetails.scss';
 
-const MovieDetails = () => {
-    const {poster_path, title, vote_average, genres, release_date, runtime, overview} = useLoaderData();
+const MovieDetails: FC = () => {
+    const data = useLoaderData() as MovieData;
+    const {poster_path, title, vote_average, genres, release_date, runtime, overview} = data;
     const location = useLocation();
 
     return (
@@ -38,6 +41,6 @@ const MovieDetails = () => {
 
 export default MovieDetails;
 
-export async function loader({ params}) {
+export async function loader({ params}: { params: { movieId: string } }) {
     return await getMovieItem([MOVIE_API_URL, params.movieId].join('/'))
 }

@@ -1,13 +1,13 @@
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, FC } from "react";
 import { Link, useLocation } from "react-router-dom";
-import PropTypes from 'prop-types';
 import { getReleaseYear, addImageFallback } from '../utils/movieUtils';
+import { MovieData } from '../types';
 import '../styles/MovieTile.scss';
 
-const useOutsideClick = (menuRef, setMenuTileContextOpen) => {
+const useOutsideClick = (menuRef: React.RefObject<HTMLDivElement>, setMenuTileContextOpen: React.Dispatch<React.SetStateAction<boolean>>) => {
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
                 setMenuTileContextOpen(false)
             }
         }
@@ -20,12 +20,16 @@ const useOutsideClick = (menuRef, setMenuTileContextOpen) => {
     }, [menuRef, setMenuTileContextOpen]);
 }
 
-const MovieTile = ({movieData}) => {
+interface MovieTileProps {
+    movieData: MovieData;
+}
+
+const MovieTile: FC<MovieTileProps> = ({movieData}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);// need to hide/show menu
     const [isMenuTileContextRendered, setMenuTileContextRendered] = useState(false)// need for menu render
     const location = useLocation();
 
-    const menuRef = useRef(null);
+    const menuRef = useRef<HTMLDivElement>(null);
 
     const handleTileMenuOpen = () => {
         setMenuTileContextRendered(true)
@@ -36,7 +40,7 @@ const MovieTile = ({movieData}) => {
 
     return (
         <div className="movie-tile__container">
-            <Link to={`/${movieData.id + location.search}`} className="movie-tile" id={movieData.id}>
+            <Link to={`/${movieData.id + location.search}`} className="movie-tile" id={movieData.id.toString()}>
                 <img className="movie-tile__image"  src={movieData.poster_path} alt={movieData.title} onError={addImageFallback}/>
                 <div className="movie-tile__header">
                     <h4 className="movie-tile__title">{movieData.title}</h4>
@@ -60,14 +64,6 @@ const MovieTile = ({movieData}) => {
             }
         </div>
     )
-}
-
-MovieTile.propTypes = {
-    poster_path: PropTypes.string,
-    title: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    release_date: PropTypes.string,
-    onClick: PropTypes.func
 }
 
 export default MovieTile
