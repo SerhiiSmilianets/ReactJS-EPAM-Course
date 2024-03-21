@@ -1,17 +1,20 @@
-import { useLoaderData, Link, useLocation } from "react-router-dom";
-import { getRuntimeFormatted, getReleaseYear, getMovieItem } from '../utils/movieUtils';
+import { FC } from 'react';
+import { useLoaderData, Link, useLocation, Outlet } from "react-router-dom";
+import { getRuntimeFormatted, getReleaseYear, getMovieItem, addImageFallback } from '../utils/movieUtils';
 import {MOVIE_API_URL} from '../constants'
+import { MovieData } from '../types';
 
 import '../styles/MovieDetails.scss';
 
-const MovieDetails = () => {
-    const {poster_path, title, vote_average, genres, release_date, runtime, overview} = useLoaderData();
+const MovieDetails: FC = () => {
+    const data = useLoaderData() as MovieData;
+    const {poster_path, title, vote_average, genres, release_date, runtime, overview} = data;
     const location = useLocation();
 
     return (
         <div className="movie-details__container">
             <div className="movie-details__poster">
-                <img className="movie-details__image" src={poster_path} alt={title} />
+                <img className="movie-details__image" src={poster_path} alt={title} onError={addImageFallback}/>
             </div>
             <div className="movie-details__info">
                 <div className="movie-details__info-header">
@@ -31,12 +34,13 @@ const MovieDetails = () => {
                 <p className='movie-details__overview'>{overview}</p>
             </div>
             <Link to={`/${location.search}`} className="reset-header-btn"> &#x1F50E;&#xFE0E;</Link>
+            <Outlet/>
         </div>
     )
 }
 
 export default MovieDetails;
 
-export async function loader({ params}) {
+export async function loader({ params}: { params: { movieId: string } }) {
     return await getMovieItem([MOVIE_API_URL, params.movieId].join('/'))
 }

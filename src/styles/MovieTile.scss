@@ -99,15 +99,16 @@
         margin: 0;
         width: 100px;
         .dialog-open-btn{
+            display: block;
             color: $text-color;
             background-color: transparent;
             border: none;
             cursor: pointer;
-            width: 100%;
             align-items: flex-start;
             text-align: left;
             padding: 5px 10px;
-            
+            text-decoration: none;
+
             &:hover {
                 background-color: $button-color;
             }
