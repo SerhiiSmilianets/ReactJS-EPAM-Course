@@ -19,7 +19,7 @@ const AddMovieForm: FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { register, handleSubmit, reset, formState: {errors} } = useForm<FormData>();
-    const onSubmit = async(data: FormData) => {
+    const handleSubmitForm = async(data: FormData) => {
         try {
             const response = await fetch("http://localhost:4000/movies", {
                 method: "POST",
@@ -39,7 +39,7 @@ const AddMovieForm: FC = () => {
 
     return (
         <div className='movie-form__container'>
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form onSubmit={handleSubmit(handleSubmitForm)}>
                 <div className='movie-form__row'>
                     <div className='movie-form__field-column left'>
                         <label htmlFor="movie_title">Title</label>

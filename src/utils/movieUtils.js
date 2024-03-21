@@ -7,6 +7,19 @@ const getRuntimeFormatted = (runtime) => {
     return [hours, 'h',' ', minutes, 'min'].join('')
 }
 
+const getDateFormatted = (release_date) => {
+    console.log(typeof release_date);
+    const releaseDate = new Date (release_date);
+    const yyyy = releaseDate.getFullYear();
+    let mm = releaseDate.getMonth() + 1; // Months start at 0!
+    let dd = releaseDate.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    return [yyyy, mm, dd].join('-')
+}
+
 const getReleaseYear = (release_date) => {
     return (new Date(release_date).getFullYear())
 }
@@ -41,5 +54,6 @@ export {
     getMovieItem,
     getMoviesList,
     addImageFallback,
-    getFirstSelectedGenre
+    getFirstSelectedGenre,
+    getDateFormatted
 }

@@ -38,16 +38,7 @@ function App() {
               element: <DeleteMovie/>
             }
           ]
-        },
-        // {
-        //   path: '/:movieId/edit',
-        //   element: <EditMovie/>,
-        //   loader: movieDetailLoader
-        // },
-        // {
-        //   path: '/:movieId/delete',
-        //   element: <DeleteMovie/>
-        // }
+        }
       ]
     }
   ]);

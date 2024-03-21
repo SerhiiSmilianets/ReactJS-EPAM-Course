@@ -5,13 +5,13 @@ import { useSearchParams } from 'react-router-dom';
 interface GenreBtnProps {
   genre: string;
   selectedGenre: string;
-  onGenreSelection: (genre: string) => void;
+  handleGenreSelection: (genre: string) => void;
 }
 
-const GenreBtn: FC<GenreBtnProps> = ({genre, selectedGenre, onGenreSelection}) => {
+const GenreBtn: FC<GenreBtnProps> = ({genre, selectedGenre, handleGenreSelection}) => {
     return (
         <li>
-            <button className={"genre-item " + (selectedGenre === genre ? "selected" : "")} onClick={() => onGenreSelection(genre)} >{genre}</button>
+            <button className={"genre-item " + (selectedGenre === genre ? "selected" : "")} onClick={() => handleGenreSelection(genre)} >{genre}</button>
         </li>
     )
 }
@@ -42,7 +42,7 @@ const GenreList: FC<GenreListProps> = ({ genresList = ['All', 'Documentary', 'Co
         <ul className="genre-list-container">
                 {
                     genresList.map((genre, index) => (
-                        <GenreBtn key={genre + index} genre={genre} selectedGenre={searchParams.get('filter') || "All"}  onGenreSelection={handleSelectGenre}/>
+                        <GenreBtn key={genre + index} genre={genre} selectedGenre={searchParams.get('filter') || "All"}  handleGenreSelection={handleSelectGenre}/>
                     ))
                 }
         </ul>

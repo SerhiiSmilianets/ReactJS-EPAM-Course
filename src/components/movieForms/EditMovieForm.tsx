@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useForm } from "react-hook-form"
-import { useNavigate, useLocation, Form } from 'react-router-dom';
+import { useNavigate, Form } from 'react-router-dom';
 
 import {GENRE_LIST} from '../../constants'
-import {getFirstSelectedGenre} from '../../utils/movieUtils'
+import {getFirstSelectedGenre, getDateFormatted} from '../../utils/movieUtils'
 import '../../styles/MovieForm.scss';
 import { MovieData } from '../../types';
 
@@ -14,20 +14,20 @@ interface MovieDataProps {
 const EditMovieForm: FC<MovieDataProps> = ({movieData}) => {
     const defaultValues = {
         title: movieData.title,
-        release_date: movieData.release_date,
+        release_date: getDateFormatted(movieData.release_date),
         poster_path: movieData.poster_path,
         vote_average: movieData.vote_average,
         genres: getFirstSelectedGenre(movieData.genres),
         runtime: movieData.runtime,
-        overview: movieData.overview
+        overview: movieData.overview,
+        id: movieData.id
     }
     const navigate = useNavigate();
-    const location = useLocation();
     const { register, handleSubmit, reset, formState: {errors} } = useForm<MovieData>({
-        defaultValues: defaultValues
+        defaultValues
     });
 
-    const onSubmit = async(data: MovieData) => {
+    const handleSubmitForm = async(data: MovieData) => {
         try {
             const response = await fetch("http://localhost:4000/movies", {
                 method: "PUT",
@@ -38,7 +38,7 @@ const EditMovieForm: FC<MovieDataProps> = ({movieData}) => {
             })
             const result = await response.json();
             if (result.id) {
-                navigate(`/${result.id + location.search}`)
+                navigate('/')
             }
         } catch (error) {
             console.error("Error:", error);
@@ -47,7 +47,7 @@ const EditMovieForm: FC<MovieDataProps> = ({movieData}) => {
 
     return (
         <div className='movie-form__container'>
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form onSubmit={handleSubmit(handleSubmitForm)}>
                 <div className='movie-form__row'>
                     <div className='movie-form__field-column left'>
                         <label htmlFor="movie_title">Title</label>
@@ -150,6 +150,8 @@ const EditMovieForm: FC<MovieDataProps> = ({movieData}) => {
                     <button onClick={() => reset(defaultValues)} className='btn reset'>Reset</button>
                     <button className='btn submit' type='submit'>Submit</button>
                 </div>
+
+                <input type='hidden' {...register("id", { required: "This is required"})} />
             </Form>
         </div>
     )

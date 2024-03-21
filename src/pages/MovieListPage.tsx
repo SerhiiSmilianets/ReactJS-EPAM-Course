@@ -51,7 +51,6 @@ const MovieListPage = () => {
                     </div>
                 </div>
             </main>
-            {/* <Outlet/> */}
         </>
     )
 }
